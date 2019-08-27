@@ -1,3 +1,6 @@
 #depositWithdrawal {
   display: none;
 }
+h2, h4 {
+  color: blue;
+}
