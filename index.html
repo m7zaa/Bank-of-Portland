@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <title>Bank of Portland</title>
+</head>
+<body>
+  <div class="container">
+    <div id="register">
+      <h1>Register an account:</h1>
+      <form class="registerForm" action="index.html" method="post">
+        <label for="">Name: </label>
+        <input type="text" id="inputtedName" reqired>
+        <label for="">Initail Deposit:</label>
+        <input type="text" id="initialDeposit" required>
+        <button type="submit" name="button">Register Account</button>
+      </form>
+    </div>
+
+    <div id="depositWithdrawal">
+      <h1>Welcome, </h1>
+      <h4>Deposit:</h4>
+      <form class="depositForm" action="index.html" method="post">
+        <label for="">Deposit Amount:</label>
+        <input type="text" id="depositInput">
+        <button type="submit" name="button">Submit</button>
+      </form>
+      <br><br>
+
+      <h4>Withdrawal:</h4>
+      <form class="withdrawalForm" action="index.html" method="post">
+        <label for="">Withdrawal Amount:</label>
+        <input type="text" id="withdrawalInput">
+        <button type="submit" name="button">Submit</button>
+      </form>
+      <br><br>
+
+      <h2>Current Balance:</h2>
+      <p><span id="balance"> </span></p>
+
+    </div>
+  </div>
+</body>
+</html>
