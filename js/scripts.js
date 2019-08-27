@@ -1,44 +1,65 @@
+
+//stored variables up to to make them global
 var inputtedName;
 var inputtedInitialDeposit;
 var inputtedWithdrawlAmount;
 var balance;
-var user1 = new Account();
+var checkingAccount = new Account();
 var inputtedDepositAmount;
+
+//constructor to make accounts
 function Account() {
   this.name = "";
   this.balance = 0;
 }
 
 $(document).ready(function(){
-
   $(".registerForm").submit(function(event) {
     event.preventDefault();
     $("#depositWithdrawal").show();
     $("#register").hide();
     inputtedName = $("#inputtedName").val();
     inputtedBalance = parseInt($("#initialDeposit").val());
-    user1.name = inputtedName;
-    user1.balance=inputtedBalance;
-    $(".displayBalance").text("$" + user1.balance);
+//adding inputted name to object
+    checkingAccount.name = inputtedName;
+    checkingAccount.balance=inputtedBalance;
+
+    $(".displayBalance").text("$" + checkingAccount.balance);
+    $("#welcomeName").text(" " + inputtedName + ".");
 
     $(".depositForm").submit(function(event) {
       event.preventDefault();
       inputtedDepositAmount = parseInt($("#depositInput").val());
+
+//This resets input field after each submission
+      $("input#depositInput").val("");
+
+  //prototype method to calculate deposits and return to object
       Account.prototype.deposit = function() {
-        this.balance = inputtedDepositAmount + user1.balance;
+        this.balance = inputtedDepositAmount + checkingAccount.balance;
         return this.balance;
       }
-      $(".displayBalance").text("$" + user1.deposit());
+
+      //displays new balance using .deposit method
+      $(".displayBalance").text("$" + checkingAccount.deposit());
     });
 
      $(".withdrawalForm").submit(function(event){
       event.preventDefault();
       inputtedWithdrawlAmount = parseInt($("#withdrawalInput").val());
+
+      //This resets input field after each submission
+      $("input#withdrawalInput").val("");
+
+      //prototype method to calculate withdrawals and return to object
+
       Account.prototype.withdrawal = function() {
-        this.balance = user1.balance - inputtedWithdrawlAmount;
+        this.balance = checkingAccount.balance - inputtedWithdrawlAmount;
         return this.balance;
       }
-      $(".displayBalance").text("$" + user1.withdrawal());
+
+      //displays updated balance using .withdrawal method
+      $(".displayBalance").text("$" + checkingAccount.withdrawal());
     });
 
 
