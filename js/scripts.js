@@ -2,8 +2,12 @@ var inputtedName;
 var inputtedInitialDeposit;
 var inputtedWithdrawlAmount;
 var balance;
-var deposit;
+var user1 = new Account();
 var inputtedDepositAmount;
+function Account() {
+  this.name = "";
+  this.balance = 0;
+}
 
 $(document).ready(function(){
 
@@ -12,45 +16,52 @@ $(".registerForm").submit(function(event) {
   $("#depositWithdrawal").show();
   $("#register").hide();
   inputtedName = $("#inputtedName").val();
-  inputtedInitialDeposit = parseInt($("#initialDeposit").val());
   inputtedWithdrawlAmount = parseInt($("#withdrawalInput").val());
-  balance = inputtedInitialDeposit;
-  deposit = balance +inputtedDepositAmount;
-  $(".displayBalance").append("<li>" + balance + "</li>" + "<br>" );
+  inputtedBalance = parseInt($("#initialDeposit").val());
+  user1.name = inputtedName;
+  user1.balance=inputtedBalance;
+  console.log(user1);
 
 
 
 
+
+// console.log(user1);
+
+// Account.prototype.deposit = function(inputtedDeposit) {
+//   return balance + inputtedDepositAmount;
+// }
+
+
+
+//
 $(".depositForm").submit(function(event) {
+
   event.preventDefault();
   inputtedDepositAmount = parseInt($("#depositInput").val());
-  console.log(inputtedDepositAmount);
-  $(".displayBalance").append("<li>" + inputtedDepositAmount + "</li>" + "<br>" );
-  console.log(inputtedDepositAmount);
+console.log(user1);
+console.log(inputtedDepositAmount);
+ Account.prototype.deposit = function() {
+  this.balance = inputtedDepositAmount + user1.balance;
+  return this.balance;
+}
+$(".displayBalance").text("$" + user1.deposit());
+
+
+
+
+  //  $(".displayBalance").append("<p>" + "$" + (inputtedInitialDeposit, inputtedDepositAmount) + "</p>" + "<br>" );
+  // console.log(balance);
+  // function Balance (initialDeposit, newDeposit, withdrawal) {
+  //   this.initialDeposit = initialDeposit;
+  //   this.newDeposit = newDeposit;
+  //   this.withdrawal = withdrawal;
+  // }
+  // console.log(balance);
 });
-
-$(".withdrawalForm").submit(function(event) {
-  event.preventDefault();
-
-  $(".displayBalance").append("<li>" + balance - inputtedWithdrawlAmount + "</li>" + "<br>" );
-});
-
-
-
-
-  function Account(name, initialDeposit) {
-    this.name = name;
-    this.initialDeposit = initialDeposit;
-
-  }
-
-
-
-
 
 });
 
-
-
-
+// $(".withdrawalForm").submit(function(event) {
+//   event.preventDefault();
 });
