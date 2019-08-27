@@ -11,57 +11,38 @@ function Account() {
 
 $(document).ready(function(){
 
-$(".registerForm").submit(function(event) {
-  event.preventDefault();
-  $("#depositWithdrawal").show();
-  $("#register").hide();
-  inputtedName = $("#inputtedName").val();
-  inputtedWithdrawlAmount = parseInt($("#withdrawalInput").val());
-  inputtedBalance = parseInt($("#initialDeposit").val());
-  user1.name = inputtedName;
-  user1.balance=inputtedBalance;
-  console.log(user1);
+  $(".registerForm").submit(function(event) {
+    event.preventDefault();
+    $("#depositWithdrawal").show();
+    $("#register").hide();
+    inputtedName = $("#inputtedName").val();
+    inputtedBalance = parseInt($("#initialDeposit").val());
+    user1.name = inputtedName;
+    user1.balance=inputtedBalance;
+    $(".displayBalance").text("$" + user1.balance);
+
+    $(".depositForm").submit(function(event) {
+      event.preventDefault();
+      inputtedDepositAmount = parseInt($("#depositInput").val());
+      Account.prototype.deposit = function() {
+        this.balance = inputtedDepositAmount + user1.balance;
+        return this.balance;
+      }
+      $(".displayBalance").text("$" + user1.deposit());
+    });
+
+     $(".withdrawalForm").submit(function(event){
+      event.preventDefault();
+      inputtedWithdrawlAmount = parseInt($("#withdrawalInput").val());
+      Account.prototype.withdrawal = function() {
+        this.balance = user1.balance - inputtedWithdrawlAmount;
+        return this.balance;
+      }
+      $(".displayBalance").text("$" + user1.withdrawal());
+    });
 
 
 
 
-
-// console.log(user1);
-
-// Account.prototype.deposit = function(inputtedDeposit) {
-//   return balance + inputtedDepositAmount;
-// }
-
-
-
-//
-$(".depositForm").submit(function(event) {
-
-  event.preventDefault();
-  inputtedDepositAmount = parseInt($("#depositInput").val());
-console.log(user1);
-console.log(inputtedDepositAmount);
- Account.prototype.deposit = function() {
-  this.balance = inputtedDepositAmount + user1.balance;
-  return this.balance;
-}
-$(".displayBalance").text("$" + user1.deposit());
-
-
-
-
-  //  $(".displayBalance").append("<p>" + "$" + (inputtedInitialDeposit, inputtedDepositAmount) + "</p>" + "<br>" );
-  // console.log(balance);
-  // function Balance (initialDeposit, newDeposit, withdrawal) {
-  //   this.initialDeposit = initialDeposit;
-  //   this.newDeposit = newDeposit;
-  //   this.withdrawal = withdrawal;
-  // }
-  // console.log(balance);
-});
-
-});
-
-// $(".withdrawalForm").submit(function(event) {
-//   event.preventDefault();
+  });
 });
